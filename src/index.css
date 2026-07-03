@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-pink: #f48fac;
+  --primary-pink-hover: #fa9fb0;
+  --pink-glow: rgba(244, 143, 172, 0.6);
+  
+  --bg-dark-panel: #423d3d; /* Right side background */
+  --card-dark: linear-gradient(145deg, #4d4848, #3b3637); /* Left card background */
+  
+  --text-dark: #1a1a1a;
+  --text-light: #ffffff;
+  --text-grey: #e0e0e0;
+  
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* Force Samsung Sharp Sans */
+  font-family: 'Samsung Sharp Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+body {
+  /* Complex gradient for background matching the mockup */
+  background-image: url("/Page d'acceuilxxx.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Typography Utilities */
+.heading-pink {
+  color: var(--primary-pink);
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+.text-pink {
+  color: var(--primary-pink);
+}
+
+/* Loader */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffffff 0%, #ffeaf1 100%); /* White to soft pink gradient */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeOutLoader 0.8s ease-out 5s forwards;
+}
+
+@keyframes fadeOutLoader {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-light); 
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-pink); 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-pink-hover); 
+}

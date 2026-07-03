@@ -1,0 +1,82 @@
+﻿400:                     <div style={{ marginBottom: '14px' }}>
+401:                         <label>AnnÃ©e de Sortie (min)</label>
+402:                         <input type="range" id="year-min-right" min="1946" max="1999" defaultValue="1946" step="1"
+403:                             style={{ width: '100%' }}
+404:                             onInput={e => {
+405:                                 const original = document.getElementById('year-min')
+406:                                 if (original) { original.value = e.target.value; original.dispatchEvent(new Event('input', { bubbles: true })) }
+407:                                 document.getElementById('year-val-right').textContent = e.target.value
+408:                             }}
+409:                         />
+410:                         <div style={{ textAlign: 'center', fontSize: '0.9rem', fontWeight: 'bold', color: 'var(--text-main)' }}>
+411:                             Films aprÃ¨s <span id="year-val-right">1946</span>
+412:                         </div>
+413:                     </div>
+414:                     <div style={{ marginBottom: '14px' }}>
+415:                         <label>DerniÃ¨re Diffusion</label>
+416:                         <select id="diff-select-right"
+417:                             style={{ width: '100%', padding: '10px', background: 'rgba(128,128,128,0.08)', color: 'var(--text-main)', border: 'none', borderRadius: '6px', fontSize: '0.9rem' }}
+418:                             onChange={e => {
+419:                                 const original = document.getElementById('diff-select')
+420:                                 if (original) { original.value = e.target.value; original.dispatchEvent(new Event('change', { bubbles: true })) }
+421:                             }}
+422:                         >
+423:                             <option value="all">Toutes</option>
+424:                             <option value="2013">2013</option>
+425:                             <option value="2012">2012</option>
+426:                             <option value="2011">2011</option>
+427:                             <option value="2010">2010</option>
+428:                         </select>
+429:                     </div>
+430:                 </div>
+431:             </div>
+432:         </div>
+433:         <button 
+434:             className="nav-btn-corner" 
+435:             id="btn-prev" 
+436:             title="PrÃ©cÃ©dent"
+437:             style={{
+438:                 position: 'fixed',
+439:                 left: '20px',
+440:                 top: '50%',
+441:                 transform: 'translateY(-50%)',
+442:                 zIndex: 21000,
+443:                 display: activeTab === 'graphique' ? 'flex' : 'none',
+444:                 alignItems: 'center',
+445:                 justifyContent: 'center'
+446:             }}
+447:         >
+448:             <i className="fas fa-chevron-left"></i>
+449:         </button>
+450:         <button 
+451:             className="nav-btn-corner" 
+452:             id="btn-next" 
+453:             title="Suivant"
+454:             style={{
+455:                 position: 'fixed',
+456:                 right: '20px',
+457:                 top: '50%',
+458:                 transform: 'translateY(-50%)',
+459:                 zIndex: 21000,
+460:                 display: activeTab === 'graphique' ? 'flex' : 'none',
+461:                 alignItems: 'center',
+462:                 justifyContent: 'center'
+463:             }}
+464:         >
+465:             <i className="fas fa-chevron-right"></i>
+466:         </button>
+467:     </div>
+468: 
+469:     <div id="artistic-view" style={{ display: activeTab === 'crea' ? 'flex' : 'none', flexDirection: 'column', position: 'relative', width: '100%', height: '100%', backgroundColor: '#ffffff', backgroundImage: "url('/Datavisualisation final.svg')", backgroundRepeat: 'no-repeat', backgroundPosition: 'center center', backgroundSize: 'contain' }}>
+470:         <a id="btn-download-pdf" href="Rendu final datavisualisation.pdf" download="Infographie_DataVis.pdf" style={{ zIndex: 10 }}>
+471:             <i className="fas fa-file-pdf"></i> VOIR L'INFOGRAPHIE
+472:         </a>
+473:         <div style={{ flex: 1, width: '100%', height: '100%' }}>
+474:             <CreativeThreeCanvas />
+475:         </div>
+476:     </div>
+477: 
+478:     <Chatbot />
+479:     </>
+480:   )
+481: }

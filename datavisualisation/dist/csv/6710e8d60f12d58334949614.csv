@@ -1,0 +1,90 @@
+"label","label_description","availability","uri","title","description","last_update","organization","group"
+"Classement thématique des sujets de journaux télévisés (janvier 2000 - décembre 2020)","-","available","https://www.data.gouv.fr/datasets/classement-thematique-des-sujets-de-journaux-televises-janvier-2000-decembre-2020","Classement thématique des sujets de journaux télévisés (janvier 2000 - décembre 2020)","Classement thématique des sujets diffusés sur les journaux télévisés du soir de cinq chaînes (TF1, France 2, France 3, Arte, M6) pour la période janvier 2000 à décembre 2020.
+
+L’Ina indexe depuis 1995 la totalité des sujets diffusés sur les journaux télévisés du soir des cinq chaînes dites « historiques » (TF1, France 2, France 3, Arte, M6 – Canal + n’est pas intégrée dans ce jeu de données du fait de sa programmation irrégulière d’un JT du soir sur la période), par une addition de mots clés appartenant à un thésaurus. A partir de cette indexation, des algorithmes ont thématisé les sujets de la période 2000-2020 entre quatorze rubriques. Un sujet donné est classé sous une rubrique et une seule.
+
+Le détail de la méthodologie d’indexation et de rubricage des sujets est présenté sur le site internet de l’Inathèque : http://www.inatheque.fr/publications-evenements/ina-stat/ina-stat-methodologie.html ; ainsi que sur la page https://data.ina.fr/traitement-documentaire, en accompagnement de la datavisualisation fondée sur ces données et publiée en page d’accueil du site https://data.ina.fr/. 
+
+**Important **: ce jeu de données, produit dans le cadre de la publication du Baromètre InaStat de l’Institut national de l’audiovisuel, est clos à la date du 31 décembre 2020.
+
+ ","2024-10-15T12:48:17.157000+00:00","Institut national de l'audiovisuel","Données sur l'offre d'information"
+"Temps de parole des hommes et des femmes à la télévision et à la radio","-","available","https://www.data.gouv.fr/datasets/temps-de-parole-des-hommes-et-des-femmes-a-la-television-et-a-la-radio","Temps de parole des hommes et des femmes à la télévision et à la radio","Temps de parole des hommes et des femmes, correspondant à plus d'un million d'heures de programmes diffusés de 1995 au 28 février 2019.
+
+Les temps de parole sont obtenus automatiquement à l'aide du logiciel libre [inaSpeechSegmenter](http://github.com/ina-foss/inaSpeechSegmenter), développé à l'INA. Ce logiciel est basé sur des algorithmes d'apprentissage automatique (sous-famille de l'intelligence artificielle) entraînés sur un grand nombre d'exemples de musique, de voix de femme et de voix d'homme, afin de détecter les zones de musique et les zones de parole contenues dans les documents audiovisuels.
+
+ Les temps de parole sont estimés par tranches d'une heure, de 5h à minuit pour la radio et de 10h à minuit pour la télévision.
+
+Les 21 stations de radio analysées sont Chérie FM, Europe 1, France Bleu, France Culture, France Info, France Inter, France Musique, Fun Radio, Mouv’, NRJ, Nostalgie, RFM, RMC, RTL, RTL 2, Radio Classique, Radio France Internationale, Rire et Chansons, Skyrock, Sud Radio et Virgin Radio.
+
+Les 34 chaînes de TV analysées sont Arte, Animaux, BFM TV, Canal+, Canal+ Sport, Chasse et pêche, Chérie 25, Comédie+, D8/C8, Euronews, Eurosport France, France 2, France 24, France 3, France 5, France O, Histoire, I-Télé/CNews, L'Equipe 21, LCI, LCP/Public Sénat, La chaîne Météo, M6, Monte Carlo TMC, NRJ 12, Paris Première, Planète+, TF1, TV Breizh, TV5 Monde, Toute l'Histoire, Téva, Voyage, W9
+
+Le fonctionnement du logiciel d’analyse automatique utilisé sur les documents audiovisuels, ainsi que l’estimation de sa fiabilité, sont décrits dans l'article ci-dessous:
+
+David Doukhan et Jean Carrive, ""[Description automatique du taux d’expression des femmes dans les flux télévisuels français](https://www.isca-archive.org/jep_2018/doukhan18_jep.pdf)"", XXXIIe Journées d’Études sur la Parole, Juin 2018
+
+Les relations existant entre le temps de parole, pourcentage de visages, nombre de mentions orales et décomptes manuels sont détaillées dans l'article ci-dessous:
+David Doukhan, Lena Dodson, Manon Conan, Valentin Pelloin, Aurélien Clamouse, Mélina Lepape, Géraldine Van Hille, Cécile Méadel et Marlène Coulomb-Gully, ""[Gender Representation in TV and Radio: Automatic Information Extraction methods versus Manual Analyses
+](https://www.isca-archive.org/interspeech_2024/doukhan24_interspeech.pdf)"", pages 3060-3064,Interspeech 2024
+","2019-03-12T20:14:10.547000+00:00","Institut national de l'audiovisuel","Données sur la représentation Femme / Homme"
+"Temps de parole des femmes et des hommes dans les programmes ayant fait l'objet d’une déclaration au CSA pour son rapport portant sur la représentation des femmes à la télévision et la radio","-","available","https://www.data.gouv.fr/datasets/temps-de-parole-des-femmes-et-des-hommes-dans-les-programmes-ayant-fait-lobjet-dune-declaration-au-csa-pour-son-rapport-portant-sur-la-representation-des-femmes-a-la-television-et-la-radio","Temps de parole des femmes et des hommes dans les programmes ayant fait l'objet d’une déclaration au CSA pour son rapport portant sur la représentation des femmes à la télévision et la radio","Les temps de parole contenus dans ce jeu de données correspondent aux estimations figurant dans les rapports annuels du CSA sur la représentation des femmes à la télévision et à la radio (exercice 2019 et 2020). Les rapports sont disponibles sur le site du CSA.
+
+Les temps de parole des femmes et des hommes sont obtenus automatiquement à l'aide du logiciel libre [inaSpeechSegmenter](https://github.com/ina-foss/inaSpeechSegmenter), développé à l'INA. Ce logiciel est fondé sur des algorithmes d'apprentissage automatique (sous-famille de l'intelligence artificielle) entraînés sur un grand nombre d'exemples de musique, de bruits, de voix de femme et de voix d'homme, afin de détecter les zones de parole contenues dans les documents audiovisuels.
+
+Les 26 chaînes de TV ayant fait l'objet de déclarations sont 6TER, BFMTV, C8, CANAL PLUS, CNEWS, Chérie 25, FRANCE 2, FRANCE 3, FRANCE 4, FRANCE 5, France 24, L'Equipe, LCI, M6, NRJ 12, RMC Découverte, RMC Story, TF1, TFX, TMC, W9, franceinfo, CSTAR, France Ô, GULLI et Paris Première. Les volumes déclarés en 2020 pour CStar, Gulli et Paris Première n'ont pas été jugés suffisamment importants pour être analysés. France Ô n'existe plus, et France 24 n'a pas fait l'objet d'analyses en 2019.
+
+Les 14 stations de radio ayant fait l'objet de déclarations sont Europe 1, Fip, France Culture, France Info, France Inter, France Musique, FunRadio, Mouv, NOSTALGIE, NRJ, RFI, RMC, RTL, Virgin Radio. Fip et RFI n'ont pas fait l'objet d'analyses en 2019. Virgin Radio n'a pas fait l'objet d'analyses en 2020.
+
+Le fonctionnement du logiciel d’analyse automatique utilisé sur les documents audiovisuels, ainsi que l’estimation de sa fiabilité, sont décrits dans l'article ci-dessous:
+
+David Doukhan et Jean Carrive, [""Description automatique du taux d’expression des femmes dans les flux télévisuels français""](https://www.isca-speech.org/archive/JEP_2018/pdfs/192838.pdf), XXXIIe Journées d’Études sur la Parole, Juin 2018","2021-03-03T22:57:47.564000+00:00","Institut national de l'audiovisuel","Données sur la représentation Femme / Homme"
+"Les Français et l'information - 2024","Il s'agit d'un état des lieux complet des relations entre les Français et l’information. Parmi les questions, comment les Français s’informent-ils et ont-ils le sentiment d’être bien informés ? Comment choisissent-ils leurs sources ? Quelle connaissance ont-ils des réseaux sociaux et de leur fonctionnement ? Quelle image des médias et des journalistes ? Quelle vision de la régulation ?","available","https://www.data.gouv.fr/datasets/les-francais-et-linformation-2024","Les Français et l'information - 2024","### Description des données :
+
+L’Arcom publie les données d’une étude sur le rapport des Français à l'information. L’étude a été conduite auprès d’un échantillon représentatif de 3356 Français âgés de 15 ans et plus.
+Elle vise à dresser un état des lieux complet des relations entre les Français et l’information.  Parmi les questions, comment les Français s’informent-ils et ont-ils le sentiment d’être bien informés ? Comment choisissent-ils leurs sources ? Quelle connaissance ont-ils des réseaux sociaux et de leur fonctionnement ? Quelle image des médias et des journalistes ? Quelle vision de la régulation ?
+Le cœur des missions de l’Arcom portant plus précisément sur ‘l’information politique et générale’, une partie du questionnaire n’a été administrée qu’aux individus ayant déclaré un intérêt pour cette thématique, soit 88% de l’échantillon total.
+Un rapport s’appuyant sur une première exploitation des résultats a été publié par l’Arcom et est  disponible ici : <https://www.arcom.fr/nos-ressources/etudes-et-donnees/mediatheque/les-francais-et-linformation>
+Dans une démarche d’ouverture, l’Arcom met à disposition la base de données.
+
+### Méthode de recueil des données :
+
+•	Vaste échantillon (3 356 personnes) représentatif des Français de 15 ans et plus, permettant de fines analyses par segments de population.
+•	Recueil des réponses combinant internet et le téléphone, afin de représenter l’ensemble des Français, y compris ceux n’utilisant pas internet.
+•	Terrain d’enquête étalé du 22 novembre au 20 décembre 2023.
+•	Dispositif confié à l’institut d’études BVA.
+
+### Méthode de redressement :
+
+L’échantillon a été redressé sur les variables suivantes :
+•	Sexe
+•	Age
+•	CSP,
+•	Catégorie d’agglomération,
+•	Equipement média (Poste de télévision, Smartphone, Ordinateur et tablette)
+•	Vote au 1er tour des dernières élections présidentielles
+•	Cible (Internaute Métropole, Illectroniques, Outre-mer).
+La variable POIDS03, sert à pondérer les résultats si l’on souhaite des résultats redressés.
+
+### Anonymisation :
+
+Au-delà des règles en vigueur et dans un souci de renforcement de l’anonymisation des données personnelles, le niveau de granularité de certaines variables a été abaissé et des regroupements ont été effectués (ex. situation géographique, dernière utilisation d’internet etc.).
+
+### Accès et Utilisation :
+
+Les données sont accessibles via le site de l’Arcom et sur le portail data.gouv.fr
+Elles sont sous licence ouverte et peuvent être utilisées de façon indépendante, sous-réserve de respecter le crédit de l’Arcom. Merci également de tenir l’Arcom informée de l’utilisation de ces données dans le cadre de publications (ouvrages, articles...)
+L’Arcom met à disposition : le fichier des données, le livre de code, un guide d’utilisation des données.
+
+### Contact :
+
+Pour toute question sur l’enquête ou sur les données, merci de contacter l'Arcom : recherche\@arcom.fr&#x20;
+","2025-05-13T10:13:37.879000+00:00","Arcom - Autorité de Régulation de la Communication Audiovisuelle et Numérique","Données sur la demande et la consommation d'information"
+"Audience de la télévision","-","available","https://www.data.gouv.fr/datasets/audience-de-la-television","Audience de la télévision","Durée d'écoute quotidienne de la télévision, 
+Parts d'audience des chaînes de télévision, 
+Les 50 meilleures audiences de la télévision par genre","2025-07-01T13:51:57+00:00","Centre national du cinéma et de l'image animée","Données sur la demande et la consommation d'information"
+"Consommation des ménages en vidéo à la demande","-","available","https://www.data.gouv.fr/datasets/consommation-des-menages-en-video-a-la-demande","Consommation des ménages en vidéo à la demande",".","2025-07-01T13:43:00+00:00","Centre national du cinéma et de l'image animée","Données sur la demande et la consommation d'information"
+"Classement des films les plus diffusés sur les chaînes nationales gratuites depuis 1957","-","available","https://www.data.gouv.fr/datasets/classement-des-films-les-plus-diffuses-sur-les-chaines-nationales-gratuites-depuis-1957-1","Classement des films les plus diffusés sur les chaînes nationales gratuites depuis 1957","Classement des films les plus diffusés sur les chaînes nationales gratuites depuis 1957.
+Classement des films les plus diffusés sur les chaînes nationales gratuites entre 2004 et 2013.","2025-07-01T13:44:44+00:00","Centre national du cinéma et de l'image animée","Données sur l'offre d'information"
+"Films à la télévision ","-","available","https://www.data.gouv.fr/datasets/films-a-la-television","Films à la télévision ","Données statistiques","2025-07-01T13:43:21+00:00","Centre national du cinéma et de l'image animée","Données sur l'offre d'information"
+"Financement de la télévision","-","available","https://www.data.gouv.fr/datasets/financement-de-la-television","Financement de la télévision",".","2021-06-10T12:40:42+00:00","Centre national du cinéma et de l'image animée","Données transverses"
+"Télévision de rattrapage (ou à la demande) : offre, consommation et usage","-","available","https://www.data.gouv.fr/datasets/television-de-rattrapage-ou-a-la-demande-offre-consommation-et-usage","Télévision de rattrapage (ou à la demande) : offre, consommation et usage","La télévision de rattrapage (TVR), ou télévision à la demande, correspond à l’ensemble des services permettant de voir ou revoir des programmes après leur diffusion sur une chaîne de télévision, pendant une période déterminée, gratuitement ou sans supplément dans le cadre d’un abonnement.","2023-07-05T12:56:05+00:00","Centre national du cinéma et de l'image animée","Données transverses"
+"Programmes audiovisuels (offre, consommation, coût de grille, investissements)","-","available","https://www.data.gouv.fr/datasets/programmes-audiovisuels-offre-consommation-cout-de-grille-investissements","Programmes audiovisuels (offre, consommation, coût de grille, investissements)",".","2018-07-24T14:04:56+00:00","Centre national du cinéma et de l'image animée","Données transverses"

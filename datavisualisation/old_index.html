@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAE 302 Datavisualisation</title>
+    
+    <!-- External Libraries -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-scale-radial@2.0.0/dist/d3-scale-radial.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Separated Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="transition-overlay">
+        <div class="transition-text" id="transition-title">CHARGEMENT</div>
+        <div class="transition-sub" id="transition-body">Analyse des données en cours...</div>
+    </div>
+
+    <!-- ECRAN D'ACCUEIL / INTRO SCREEN -->
+    <div id="intro-screen">
+        <div class="intro-content active" id="intro-step-1">
+            <div class="intro-sae">SAE 302</div>
+            <h1 class="intro-title">DATAVISUALISATION</h1>
+        </div>
+        <div class="intro-content" id="intro-step-2">
+            <h1 class="intro-title-main">Les Français face à l'information</h1>
+            <div class="intro-authors">
+                <span class="author-name">Samuel Ralaikoa</span>
+                <span class="author-name">Kinaya Zakaria</span>
+                <span class="author-name">Dienaba Sow</span>
+            </div>
+        </div>
+    </div>
+
+    <nav class="main-navbar">
+        <div class="nav-links">
+            <button class="nav-btn active" id="nav-mode-graphique">
+                Graphique
+            </button>
+            <button class="nav-btn" id="nav-mode-crea">
+                Créatif
+            </button>
+            <button class="nav-btn" id="nav-mode-visuel">
+                Visuel
+            </button>
+        </div>
+        <div class="nav-actions">
+            <label class="switch-label" title="Mode Sombre/Clair">
+                <input type="checkbox" id="toggle-theme">
+                <span class="slider">
+                    <i class="fas fa-sun switch-icon"></i>
+                    <i class="fas fa-moon switch-icon"></i>
+                </span>
+            </label>
+        </div>
+    </nav>
+
+    <div id="analytic-view">
+        <div class="main-layout">
+            <div class="left-panel">
+                <div id="generic-controls">
+                    <div class="section-title" data-interactive="true">Navigation</div>
+                    <div id="filter-list"></div> 
+                    <div id="sunburst-controls" style="display:none; margin-top:20px;">
+                        <div class="section-title" data-interactive="true">Sexe</div>
+                        <div style="display:flex; gap:5px; margin-bottom:15px;">
+                            <button class="retro-btn active" id="btn-all">Tous</button>
+                            <button class="retro-btn" id="btn-h">H</button>
+                            <button class="retro-btn" id="btn-f">F</button>
+                        </div>
+                        <div class="section-title" data-interactive="true">Groupe Média</div>
+                        <div id="sunburst-groups" style="display:flex; flex-direction:column; gap:5px;"></div>
+                    </div>
+                </div>
+                
+                <div id="meta-controls" style="display:none;">
+                    <div class="section-title" data-interactive="true">Filtres Données</div>
+                    <div>
+                        <label>Groupe / Catégorie</label>
+                        <select id="meta-group-select"><option value="all">Tous</option></select>
+                    </div>
+                    <div style="margin-top:15px;">
+                        <label>Média / Nom</label>
+                        <select id="meta-media-select"><option value="all">Tous</option></select>
+                    </div>
+                    <div style="margin-top:20px;">
+                         <button class="retro-btn" id="btn-meta-reset">Réinitialiser Vue</button>
+                    </div>
+                </div>
+
+                <div id="film-controls" style="display:none;">
+                    <div class="section-title" data-interactive="true">Filtres Films</div>
+                    <div>
+                        <label>Pays de Production</label>
+                        <select id="country-select">
+                            <option value="all">Tous les pays</option>
+                            <option value="FR">France (Uniquement)</option>
+                            <option value="US">États-Unis</option>
+                            <option value="IT">Italie</option>
+                            <option value="coprod">Co-productions</option>
+                        </select>
+                    </div>
+                    <div style="margin-top:15px;">
+                        <label>Année de Sortie (min)</label>
+                        <input type="range" id="year-min" min="1946" max="1999" value="1946" step="1">
+                        <div style="text-align:center; font-size:0.9rem; font-weight:bold; color:var(--text-main)">
+                            Films après <span id="year-val">1946</span>
+                        </div>
+                    </div>
+                    <div style="margin-top:15px;">
+                        <label>Dernière Diffusion</label>
+                        <select id="diff-select">
+                            <option value="all">Toutes</option>
+                            <option value="2013">2013</option>
+                            <option value="2012">2012</option>
+                            <option value="2011">2011</option>
+                            <option value="2010">2010</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="reset-container" style="display:none; margin-top:20px;">
+                    <button class="retro-btn" id="btn-reset">Réinitialiser</button>
+                </div>
+
+                <div class="stats-container" style="margin-top:auto; padding-top:20px; border-top:1px solid var(--accent-ui);">
+                    <div class="section-title stats-title-btn" id="btn-stats-info" style="cursor:pointer;" title="Cliquez pour en savoir plus">
+                        STATISTIQUES <i class="fas fa-question-circle" style="font-size:0.8rem; opacity:0.5; margin-left:5px;"></i>
+                    </div>
+                    <div class="stats-box">
+                        <div class="stat-row">
+                            <span class="stat-label">Moyenne</span> <span class="stat-val" id="stat-mean">--</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Médiane</span> <span class="stat-val" id="stat-med">--</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Écart-Type</span> <span class="stat-val" id="stat-std">--</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Variance</span> <span class="stat-val" id="stat-var">--</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Max</span> <span class="stat-val" id="stat-max">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="center-panel">
+                <div class="chart-main-title" id="main-chart-title" data-interactive="true">PARITÉ TEMPS DE PAROLE</div>
+                
+                <div class="chart-wrapper">
+                    <div id="analysis-overlay" class="analysis-overlay">
+                        <div id="analysis-header" class="analysis-header">BILAN</div>
+                        <div id="analysis-body" class="analysis-body">...</div>
+                    </div>
+
+                    <div id="slide-0" class="slide active">
+                        <div id="chart-chord" style="width:100%; height:100%;"></div>
+                    </div>
+                    <div id="slide-1" class="slide">
+                        <div id="sunburst-breadcrumbs"></div>
+                        <div id="chart-sunburst" style="width:100%; height:90%;"></div>
+                    </div>
+                    <div id="slide-2" class="slide">
+                        <div id="chart-bundling" style="width:100%; height:100%;"></div>
+                    </div>
+                    <div id="slide-3" class="slide">
+                        <div class="center-info-radial" id="radial-info">
+                            <span class="center-rank">INFO</span>
+                            <div class="center-title">Survolez un film</div>
+                            <div class="center-detail">Visualisation Interactive</div>
+                            <div class="center-count">--</div>
+                        </div>
+                        <div id="chart-films" style="width:100%; height:100%;"></div>
+                    </div>
+                    <div id="slide-4" class="slide">
+                        <div id="chart-radial-stacked" style="width:100%; height:100%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <h2 class="section-title" id="info-header" data-interactive="true">DÉTAILS</h2>
+                <div class="standard-card" id="std-card">
+                    <div class="sc-header">
+                        <img id="sc-img" class="sc-img hidden" src="" alt="Icon">
+                        <i id="sc-icon" class="fas fa-database sc-placeholder-icon"></i>
+                    </div>
+                    <div class="sc-title" id="sc-title">Sélectionnez</div>
+                    <div class="sc-desc" id="sc-desc">Survolez les graphiques pour voir les détails.</div>
+                    <div class="gender-container" id="sc-gender-box">
+                        <div class="gender-labels">
+                            <span style="color:var(--col-men)">H</span>
+                            <span style="color:var(--col-women)">F</span>
+                        </div>
+                        <div class="gender-bar-wrapper">
+                            <div id="sc-bar-men" class="gender-bar-part men" style="width: 50%;"></div>
+                            <div id="sc-bar-women" class="gender-bar-part women" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tv-set" id="tv-card">
+                    <div class="tv-antenna antenna-l"><div class="antenna-ball"></div></div>
+                    <div class="tv-antenna antenna-r"><div class="antenna-ball"></div></div>
+                    <div class="tv-screen-frame">
+                        <div class="tv-screen">
+                            <img id="tv-bg-image" src="https://ui-avatars.com/api/?name=TV&background=333&color=fff" alt="Screen">
+                            <div class="tv-overlay"></div>
+                            <div class="tv-content-layer">
+                                <div class="tv-text-wrapper">
+                                    <h3 id="tv-card-title">CANAL 1</h3>
+                                    <p id="tv-card-desc">En attente de signal...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tv-controls"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="nav-btn-container">
+            <button class="nav-btn-corner" id="btn-prev" title="Précédent">
+                [ précédent ]
+            </button>
+            <button class="nav-btn-corner" id="btn-next" title="Suivant">
+                [ suivant ]
+            </button>
+        </div>
+    </div>
+
+    <div id="artistic-view">
+        <a id="btn-download-pdf" href="Rendu final datavisualisation.pdf" download="Infographie_DataVis.pdf">
+            <i class="fas fa-file-pdf"></i> VOIR L'INFOGRAPHIE
+        </a>
+        <img src="svg/Créa1.svg" class="anim-crea-full" alt="Visualisation Artistique" style="width:100%; height:100%; object-fit:contain; opacity: 0;">
+    </div>
+
+    <!-- NOUVEAU MODE VISUEL -->
+    <div id="visuel-view" style="display:none;">
+        <div class="visuel-container">
+            <!-- Partie Gauche : La composition Créative -->
+            <div class="visuel-left">
+                <div class="svg-composition">
+                    <img src="svg/Créa.svg" class="layer anim-grand-cercle">
+                    <img src="svg/Cercle gradué.svg" class="layer anim-bars">
+                    <img src="svg/lignes cercle.svg" class="layer anim-lines">
+                    <img src="svg/cercle couleur.svg" class="layer anim-arcs">
+                    <img src="svg/cercle blanc 1.svg" class="layer anim-ring1">
+                    <img src="svg/cercle blanc 2.svg" class="layer anim-ring2">
+                    <img src="svg/cercle blanc 3.svg" class="layer anim-ring3">
+                    <img src="svg/Cercle pourcentage blanc.svg" class="layer anim-percent">
+                    <img src="svg/cercle texte.svg" class="layer anim-text">
+                </div>
+                <button id="btn-replay-visuel">
+                    <i class="fas fa-redo"></i> Rejouer l'animation
+                </button>
+            </div>
+            
+            <!-- Partie Droite : La Galerie de calques interactive -->
+            <div class="visuel-right">
+                <div class="gallery-title">Galerie des Calques</div>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-layer="anim-grand-cercle">
+                        <div class="gallery-thumb-bg">
+                            <img src="svg/Créa.svg" alt="Créa">
+                        </div>
+                        <span>Créa</span>
+                    </div>
+                    <div class="gallery-item" data-layer="anim-bars">
+                        <div class="gallery-thumb-bg">
+                            <img src="svg/Cercle gradué.svg" alt="Graduation">
+                        </div>
+                        <span>Graduation</span>
+                    </div>
+                    <div class="gallery-item" data-layer="anim-lines">
+                        <div class="gallery-thumb-bg">
+                            <img src="svg/lignes cercle.svg" alt="Lignes">
+                        </div>
+                        <span>Lignes</span>
+                    </div>
+                    <div class="gallery-item" data-layer="anim-arcs">
+                        <div class="gallery-thumb-bg">
+                            <img src="svg/cercle couleur.svg" alt="Données">
+                        </div>
+                        <span>Données</span>
+                    </div>
+                    <div class="gallery-item" data-layer="anim-ring1">
+                        <div class="gallery-thumb-bg">
+                            <img src="svg/cercle blanc 1.svg" alt="Cercle 1">
+                        </div>
+                        <span>Cercle 1</span>
+                    </div>
+                    <div class="gallery-item" data-layer="anim-ring2">
+                        <div class="gallery-thumb-bg">
+                            <img src="svg/cercle blanc 2.svg" alt="Cercle 2">
+                        </div>
+                        <span>Cercle 2</span>
+                    </div>
+                    <div class="gallery-item" data-layer="anim-ring3">
+                        <div class="gallery-thumb-bg">
+                            <img src="svg/cercle blanc 3.svg" alt="Cercle 3">
+                        </div>
+                        <span>Cercle 3</span>
+                    </div>
+                    <div class="gallery-item" data-layer="anim-percent">
+                        <div class="gallery-thumb-bg">
+                            <img src="svg/Cercle pourcentage blanc.svg" alt="Pourcentage">
+                        </div>
+                        <span>Pourcentage</span>
+                    </div>
+                    <div class="gallery-item" data-layer="anim-text">
+                        <div class="gallery-thumb-bg">
+                            <img src="svg/cercle texte.svg" alt="Légendes">
+                        </div>
+                        <span>Légendes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL STATISTIQUES -->
+    <div id="stats-modal" class="stats-modal-overlay">
+        <div class="stats-modal-content">
+            <button class="stats-modal-close" id="stats-modal-close">&times;</button>
+            <h2 class="stats-modal-title">ANALYSE DES STATISTIQUES</h2>
+            <p class="stats-modal-intro" id="stats-modal-context"></p>
+            <div id="stats-modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Separated Script Files -->
+    <script src="films.js"></script>
+    <script src="covers.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

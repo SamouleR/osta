@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "datavisualisation",
+			"path": "A:/datavisualisation"
+		},
+		{
+			"name": "image(1)",
+			"path": "../image(1)"
+		},
+		{
+			"name": "svg",
+			"path": "../svg"
+		}
+	],
+	"settings": {}
+}

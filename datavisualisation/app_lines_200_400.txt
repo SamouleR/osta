@@ -1,0 +1,201 @@
+﻿200:                             <button className="retro-btn active" id="btn-all">Tous</button>
+201:                             <button className="retro-btn" id="btn-h">H</button>
+202:                             <button className="retro-btn" id="btn-f">F</button>
+203:                         </div>
+204:                         <div className="section-title" data-interactive="true">Groupe MÃ©dia</div>
+205:                         <div id="sunburst-groups" style={{display: 'flex', flexDirection: 'column', gap: '5px'}}></div>
+206:                     </div>
+207:                 </div>
+208:                 
+209:                 <div id="meta-controls" style={{display: 'none'}}>
+210:                     <div className="section-title" data-interactive="true">Filtres DonnÃ©es</div>
+211:                     <div>
+212:                         <label>Groupe / CatÃ©gorie</label>
+213:                         <select id="meta-group-select"><option value="all">Tous</option></select>
+214:                     </div>
+215:                     <div style={{marginTop: '15px'}}>
+216:                         <label>MÃ©dia / Nom</label>
+217:                         <select id="meta-media-select"><option value="all">Tous</option></select>
+218:                     </div>
+219:                     <div style={{marginTop: '20px'}}>
+220:                          <button className="retro-btn" id="btn-meta-reset">RÃ©initialiser Vue</button>
+221:                     </div>
+222:                 </div>
+223: 
+224:                 {/* film-controls hidden here - shown via right panel when on films slide */}
+225:                 <div id="film-controls" style={{display: 'none'}}>
+226:                     <div className="section-title" data-interactive="true">Filtres Films</div>
+227:                     <div>
+228:                         <label>Pays de Production</label>
+229:                         <select id="country-select">
+230:                             <option value="all">Tous les pays</option>
+231:                             <option value="FR">France (Uniquement)</option>
+232:                             <option value="US">Ã‰tats-Unis</option>
+233:                             <option value="IT">Italie</option>
+234:                             <option value="coprod">Co-productions</option>
+235:                         </select>
+236:                     </div>
+237:                     <div style={{marginTop: '15px'}}>
+238:                         <label>AnnÃ©e de Sortie (min)</label>
+239:                         <input type="range" id="year-min" min="1946" max="1999" defaultValue="1946" step="1" />
+240:                         <div style={{textAlign: 'center', fontSize: '0.9rem', fontWeight: 'bold', color: 'var(--text-main)'}}>
+241:                             Films aprÃ¨s <span id="year-val">1946</span>
+242:                         </div>
+243:                     </div>
+244:                     <div style={{marginTop: '15px'}}>
+245:                         <label>DerniÃ¨re Diffusion</label>
+246:                         <select id="diff-select">
+247:                             <option value="all">Toutes</option>
+248:                             <option value="2013">2013</option>
+249:                             <option value="2012">2012</option>
+250:                             <option value="2011">2011</option>
+251:                             <option value="2010">2010</option>
+252:                         </select>
+253:                     </div>
+254:                 </div>
+255: 
+256:                 <div id="reset-container" style={{display: 'none', marginTop: '20px'}}>
+257:                     <button className="retro-btn" id="btn-reset">RÃ©initialiser</button>
+258:                 </div>
+259: 
+260: 
+261:             </div>
+262:             )}
+263: 
+264: 
+265:             <div className="center-panel">
+266:                 <div className="chart-main-title" id="main-chart-title" data-interactive="true">PARITÃ‰ TEMPS DE PAROLE</div>
+267:                 
+268:                 <div className="chart-wrapper">
+269:                     <div id="slide-0" className={`slide ${selectedChartIndex === 0 ? 'active' : ''}`} style={{ overflowY: 'auto', overflowX: 'hidden' }}>
+270:                     <div className="slide0-vertical-layout slide0-bg-white">
+271: 
+272:                         {/* CHARTE 1 â€” Hommes */}
+273:                         <div className="slide0-chart-section slide0-chart-section-large">
+274:                             <div className="slide0-chart-label slide0-label-men">
+275:                                 <span className="slide0-label-num">01</span>
+276:                                 <span className="slide0-label-title">Part des hommes</span>
+277:                             </div>
+278:                             <div id="chart-men-only" className="slide0-chart-container"></div>
+279:                         </div>
+280: 
+281:                         {/* CHARTE 2 â€” Femmes */}
+282:                         <div className="slide0-chart-section slide0-chart-section-large">
+283:                             <div className="slide0-chart-label slide0-label-women">
+284:                                 <span className="slide0-label-num">02</span>
+285:                                 <span className="slide0-label-title">Part des femmes</span>
+286:                             </div>
+287:                             <div id="chart-women-only" className="slide0-chart-container"></div>
+288:                         </div>
+289: 
+290:                         {/* CHARTE 3 â€” Les deux */}
+291:                         <div className="slide0-chart-section slide0-chart-section-large">
+292:                             <div className="slide0-chart-label slide0-label-both">
+293:                                 <span className="slide0-label-num">03</span>
+294:                                 <span className="slide0-label-title">Bilan global H / F</span>
+295:                             </div>
+296:                             <div id="chart-both" className="slide0-chart-container"></div>
+297:                         </div>
+298: 
+299:                         <div className="slide0-explanation">
+300:                             <p>
+301:                                 Ces trois graphiques sont conÃ§us pour rendre la comparaison simpleÂ : lâ€™un montre uniquement les hommes, lâ€™autre uniquement les femmes, et le troisiÃ¨me synthÃ©tise les parts de parole globaux entre les deux sexes.
+302:                             </p>
+303:                         </div>
+304: 
+305:                     </div>
+306:                 </div>
+307:                     <div id="slide-1" className="slide">
+308:                         <div id="sunburst-breadcrumbs"></div>
+309:                         <div id="chart-sunburst" style={{width: '100%', height: '100%'}}></div>
+310:                     </div>
+311:                     <div id="slide-2" className="slide">
+312:                         <div className="center-info-radial" id="radial-info">
+313:                             <span className="center-rank">INFO</span>
+314:                             <div className="center-title">Survolez un film</div>
+315:                             <div className="center-detail">Visualisation Interactive</div>
+316:                             <div className="center-count">--</div>
+317:                         </div>
+318:                         <div className="slide2-explainer">
+319:                             <p>
+320:                                 Clique sur un pays sur la carte pour filtrer immÃ©diatement les films par origine. Le diagramme radial affiche alors uniquement les films correspondant Ã  ce pays.
+321:                             </p>
+322:                         </div>
+323:                         <div id="chart-films" style={{width: '100%', height: '100%'}}></div>
+324:                     </div>
+325:                     <div id="slide-3" className="slide">
+326:                         <div id="chart-radial-stacked" style={{width: '100%', height: '100%'}}></div>
+327:                     </div>
+328:                     <div id="slide-4" className="slide">
+329:                         {baroData ? <Streamgraph data={baroData} /> : <p>Chargement...</p>}
+330:                     </div>
+331:                     <div id="slide-5" className="slide">
+332:                         {baroData ? <BarometreRadial data={baroData} /> : <p>Chargement...</p>}
+333:                     </div>
+334:                     <div id="slide-6" className="slide">
+335:                         <ThemeDoubleChart />
+336:                     </div>
+337:                 </div>
+338:                 <SankeySummary activeIndex={selectedChartIndex} />
+339:             </div>
+340: 
+341:             <div className={`right-panel ${selectedChartIndex === 2 ? 'films-mode-right' : ''}`} id="right-panel-main" style={{ display: selectedChartIndex === 0 ? 'none' : 'flex' }}>
+342:                 <h2 className="section-title" id="info-header" data-interactive="true"
+343:                     style={{ display: selectedChartIndex === 2 ? 'none' : '' }}>DÃ‰TAILS</h2>
+344:                 <div className="standard-card" id="std-card">
+345:                     <div className="sc-header">
+346:                         <img id="sc-img" className="sc-img hidden" src="" alt="Icon" />
+347:                         <i id="sc-icon" className="fas fa-database sc-placeholder-icon"></i>
+348:                     </div>
+349:                     <div className="sc-title" id="sc-title">SÃ©lectionnez</div>
+350:                     <div className="sc-desc" id="sc-desc">Survolez les graphiques pour voir les dÃ©tails.</div>
+351:                     <div className="gender-container" id="sc-gender-box">
+352:                         <div className="gender-labels">
+353:                             <span style={{color: 'var(--col-men)'}}>H</span>
+354:                             <span style={{color: 'var(--col-women)'}}>F</span>
+355:                         </div>
+356:                         <div className="gender-bar-wrapper">
+357:                             <div id="sc-bar-men" className="gender-bar-part men" style={{width: '50%'}}></div>
+358:                             <div id="sc-bar-women" className="gender-bar-part women" style={{width: '50%'}}></div>
+359:                         </div>
+360:                     </div>
+361:                 </div>
+362: 
+363:                 <div className="tv-set" id="tv-card">
+364:                     <div className="tv-antenna antenna-l"><div className="antenna-ball"></div></div>
+365:                     <div className="tv-antenna antenna-r"><div className="antenna-ball"></div></div>
+366:                     <div className="tv-screen-frame">
+367:                         <div className="tv-screen">
+368:                             <img id="tv-bg-image" src="https://ui-avatars.com/api/?name=TV&background=333&color=fff" alt="Screen" />
+369:                             <div className="tv-overlay"></div>
+370:                             <div className="tv-content-layer">
+371:                                 <div className="tv-text-wrapper">
+372:                                     <h3 id="tv-card-title">CANAL 1</h3>
+373:                                     <p id="tv-card-desc">En attente de signal...</p>
+374:                                 </div>
+375:                             </div>
+376:                         </div>
+377:                     </div>
+378:                     <div className="tv-controls"></div>
+379:                 </div>
+380: 
+381:                 {/* Films filters shown in right panel only for slide 2 */}
+382:                 <div id="film-controls-right" style={{ display: selectedChartIndex === 2 ? 'block' : 'none', width: '100%' }}>
+383:                     <div className="section-title" style={{ marginTop: '20px' }}>Filtres Films</div>
+384:                     <div style={{ marginBottom: '14px' }}>
+385:                         <label>Pays de Production</label>
+386:                         <select id="country-select-right"
+387:                             style={{ width: '100%', padding: '10px', background: 'rgba(128,128,128,0.08)', color: 'var(--text-main)', border: 'none', borderRadius: '6px', fontSize: '0.9rem' }}
+388:                             onChange={e => {
+389:                                 const original = document.getElementById('country-select')
+390:                                 if (original) { original.value = e.target.value; original.dispatchEvent(new Event('change', { bubbles: true })) }
+391:                             }}
+392:                         >
+393:                             <option value="all">Tous les pays</option>
+394:                             <option value="FR">France</option>
+395:                             <option value="US">Ã‰tats-Unis</option>
+396:                             <option value="IT">Italie</option>
+397:                             <option value="coprod">Co-productions</option>
+398:                         </select>
+399:                     </div>
+400:                     <div style={{ marginBottom: '14px' }}>

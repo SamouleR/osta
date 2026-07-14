@@ -28,7 +28,6 @@ OSTA est une plateforme e-commerce dédiée à la vente de vêtements éco-respo
 
 - `/src` : Code source du Frontend (Pages, Composants React, CSS).
 - `/server` : Code source du Backend (Serveur Express, Base de données SQLite).
-- `/datavisualisation` : Scripts Python et documents annexes (graphiques, pdf, analyse de données).
 - `/public` : Ressources statiques (images des articles, etc.).
 
 ## ⚙️ Installation et Lancement
